@@ -1,0 +1,20 @@
+<resources>
+
+	<string name="app_name">演示程序</string>
+
+	<string name="title_fragment_old">Simple v4 fragment</string>
+
+	<string name="title_fragment_order_req_list">订单请求列表</string>
+
+	<string name="title_fragment_order_req_fragment">订单确认</string>
+
+	<string name="title_fragment_order_result">订单结果</string>
+
+	<string name="payment_item">成员</string>
+
+	<string name="action_finished">完成</string>
+
+	<string name="order_result_success">支付成功！</string>
+	<string name="order_result_failure">支付失败！</string>
+
+</resources>

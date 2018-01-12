@@ -1,0 +1,17 @@
+{
+  "merchantNo": "888100000000003",
+  "merchantKey": "1122334455",
+  "host": "http://10.0.2.2:9080",
+  "payServerUrl": "/pay-web-gateway/",
+  "language": "en",
+  "country": "ID",
+  "channels": [
+	"ID-IB-SIM",
+	"ID-DCB-TELKOMSEL",
+	"ID-DCB-INDOSAT",
+	"ID-DCB-H3I",
+	"ID-DCB-XL",
+	"ID-BANK-BCA",
+	"ID-OTC-ALFAMART"
+  ]
+}

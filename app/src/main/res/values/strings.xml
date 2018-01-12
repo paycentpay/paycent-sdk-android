@@ -1,0 +1,20 @@
+<resources>
+
+	<string name="app_name">Demo App</string>
+
+	<string name="title_fragment_old">Simple v4 fragment</string>
+
+	<string name="title_fragment_order_req_list">Order request list</string>
+
+	<string name="title_fragment_order_req_fragment">Order confirmation</string>
+
+	<string name="title_fragment_order_result">Order result</string>
+
+	<string name="payment_item">Item</string>
+
+	<string name="action_finished">Finished</string>
+
+	<string name="order_result_success">Payment success!</string>
+	<string name="order_result_failure">Payment failure!</string>
+
+</resources>

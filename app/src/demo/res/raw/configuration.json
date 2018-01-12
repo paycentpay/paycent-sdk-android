@@ -1,0 +1,15 @@
+{
+  "merchantNo": "888100000000001",
+  "merchantKey": "6188ff6c32bd4e039f1be8186eb35bd0",
+  "host": "https://gateway-sandbox.bellotec.com",
+  "payServerUrl": "/",
+  "language": "en",
+  "country": "ID",
+  "channels": [
+	"ID-DCB-TELKOMSEL",
+	"ID-DCB-INDOSAT",
+	"ID-DCB-H3I",
+	"ID-BANK-BCA",
+	"ID-OTC-ALFAMART"
+  ]
+}
