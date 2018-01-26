@@ -31,12 +31,15 @@ public class Configuration {
 	@SerializedName("merchantKey")
 	private String merchantKey;
 
-	@SerializedName("host")
-	private String host;
-
 	@SerializedName("payServerUrl")
 	private String payServerUrl;
 
+	@SerializedName("notifyUrl")
+	private String notifyUrl;
+	
+	@SerializedName("returnUrl")
+	private String returnUrl;
+	
 	@SerializedName("language")
 	private String language;
 
@@ -91,12 +94,20 @@ public class Configuration {
 		this.payServerUrl = payServerUrl;
 	}
 
-	public String getHost() {
-		return host;
+	public String getNotifyUrl() {
+		return notifyUrl;
 	}
 
-	public void setHost(String host) {
-		this.host = host;
+	public void setNotifyUrl(String notifyUrl) {
+		this.notifyUrl = notifyUrl;
+	}
+
+	public String getReturnUrl() {
+		return returnUrl;
+	}
+
+	public void setReturnUrl(String returnUrl) {
+		this.returnUrl = returnUrl;
 	}
 
 	public Configuration(Context context) {
@@ -136,11 +147,12 @@ public class Configuration {
 
 		this.merchantNo = conf.getMerchantNo();
 		this.merchantKey = conf.getMerchantKey();
-		this.host = conf.getHost();
 		this.payServerUrl = conf.getPayServerUrl();
 		this.language = conf.getLanguage();
 		this.country = conf.getCountry();
 		this.channels = conf.getChannels();
+		this.notifyUrl = conf.getNotifyUrl();
+		this.returnUrl = conf.getReturnUrl();
 	}
 
 	public SdkPayRequest createSdkRequest(){
@@ -149,12 +161,12 @@ public class Configuration {
 
 		req.setMerchantNo(merchantNo);
 		req.setMerchantKey(merchantKey);
-		req.setPayServerUrl(host + payServerUrl);
+		req.setPayServerUrl(payServerUrl);
 
 		req.setFrpCodes(channels);
-
-		req.setReturnUrl(host + "/pay-web-shop/return_url.jsp");
-		req.setNotifyUrl(host + "/pay-web-shop/notify_url.jsp");
+		
+		req.setReturnUrl(returnUrl);
+		req.setNotifyUrl(notifyUrl);
 
 		req.setLanguage(language);
 		req.setCountry(country);
@@ -256,6 +268,10 @@ public class Configuration {
 
 		mmMaps.put("MM-DCB-OOREDOO", "OOREDOO");
 		mmMaps.put("MM-DCB-TELENOR", "TELENOR");
+
+		mmMaps.put("MM-OTC-WAVEMONEY", "WAVEMONEY");
+
+		mmMaps.put("MM-VR-REDDOT", "REDDOT");
 
 //		mmMaps.put("MM-EW-2C2P", "2C2P");
 //		mmMaps.put("MM-EW-OKDOLLAR", "OKDOLLAR");
