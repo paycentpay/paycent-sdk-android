@@ -1,8 +1,9 @@
 {
-  "merchantNo": "888100000000001",
-  "merchantKey": "6188ff6c32bd4e039f1be8186eb35bd0",
-  "payServerUrl": "https://gateway-sandbox.bellotec.com/",
+  "merchantNo": "yourMerchantNo",
+  "merchantKey": "yourMerchantKey",
+  "payServerUrl": "https://paycentSandboxServer/",
   "notifyUrl":"http://merchantServer/notifyUrl",
+  "returnUrl":"http://merchantServer/returnUrl",
   "language": "en",
   "country": "ID",
   "channels": [
