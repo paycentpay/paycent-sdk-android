@@ -1,7 +1,7 @@
 package com.paycent.demo.app.ui;
 
 import android.app.Activity;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.paycent.demo.app.R;
 import com.paycent.android.sdk.SdkPayConstants;
 import com.paycent.android.sdk.SdkPayResult;
+import com.paycent.demo.app.v5.App5Activity;
 
 public class OrderResultFragment extends Fragment {
 
@@ -30,14 +31,14 @@ public class OrderResultFragment extends Fragment {
 		return fragment;
 	}
 
-	private AbstractOrderActivity orderActivity;
+	private App5Activity orderActivity;
 
 	private SdkPayResult payResult;
 
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
-		orderActivity = (AbstractOrderActivity) activity;
+		orderActivity = (App5Activity) activity;
 	}
 
 	@Override
@@ -90,22 +91,25 @@ public class OrderResultFragment extends Fragment {
 		}
 	}
 
-	boolean isResultError(){
-		return !payResult.getStatus().equalsIgnoreCase(SdkPayConstants.StatusSuccess);
-	}
-
 	public void addStatusDetail(View parentView){
 
-		String iconName;
-		String titleName;
+		String iconName = null;
+		String titleName = null;
 		int resourceId;
 
-		if(isResultError() ){
+		String status = payResult.getStatus();
+
+		if(status.equalsIgnoreCase(SdkPayConstants.StatusServerError) ||
+				status.equalsIgnoreCase(SdkPayConstants.StatusNetworkError)){
 			iconName = "ic_result_failure";
 			titleName = "order_result_failure";
-		}else{
+		}else  if( status.equalsIgnoreCase(SdkPayConstants.StatusSuccess)){
 			iconName = "ic_result_success";
 			titleName = "order_result_success";
+		}
+
+		if(iconName == null || titleName == null){
+			return;
 		}
 
 		ImageView iconView = (ImageView) parentView.findViewById(R.id.order_result_icon);

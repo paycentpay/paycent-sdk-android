@@ -1,7 +1,7 @@
 package com.paycent.demo.app.ui;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -26,7 +26,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
 
 		setContentView(getLayoutResId());
 
-		FragmentManager fm = getFragmentManager();
+		FragmentManager fm = getSupportFragmentManager();
 		Fragment fragment = fm.findFragmentById(getFragmentResId());
 
 		if (fragment == null) {

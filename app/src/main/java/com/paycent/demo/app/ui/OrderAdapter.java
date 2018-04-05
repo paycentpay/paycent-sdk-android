@@ -7,8 +7,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.paycent.demo.app.R;
 import com.paycent.demo.app.model.Order;
@@ -25,6 +28,9 @@ class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
     private List<Order> orderList;
 
 	private Activity mActivity;
+
+    protected  Long totalAmount = 0L;
+
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -71,10 +77,40 @@ class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 	    // Create a new view.
-	    View v = LayoutInflater.from(viewGroup.getContext())
+	    final View v = LayoutInflater.from(viewGroup.getContext())
 				    .inflate(R.layout.list_item_order, viewGroup, false);
 
-	    return new ViewHolder(v);
+        final ViewHolder vh  = new ViewHolder(v) ;
+        //amount checkbox selection
+        CheckBox cb = (CheckBox) v.findViewById(R.id.order_list_checkBox);
+        cb.setOnCheckedChangeListener(
+                new CheckBox.OnCheckedChangeListener()
+                {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+                    {
+                        String amountStr = vh.amountView.getText().toString().split(":")[1].trim();
+                        Long value = Long.valueOf(amountStr );
+                        if ( isChecked )
+                        {
+                            totalAmount += value;
+                            Toast.makeText(buttonView.getContext(), "+" +
+                                    value, Toast.LENGTH_SHORT).show();
+
+                        }else{
+                            totalAmount -= value;
+                            Toast.makeText(buttonView.getContext(), "-" +
+                                    value, Toast.LENGTH_SHORT).show();
+                        }
+
+                        TextView textView = (TextView) mActivity.findViewById(R.id.textView);
+                        textView.setText("Total  "+ totalAmount );
+                    }
+                }
+        );
+
+
+        return vh;
     }
 
     @Override
@@ -89,8 +125,8 @@ class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
 	    TextView textView = viewHolder.getTitleView();
 	    textView.setText(o.getTitle() );
 
-	    textView = viewHolder.getNumView();
-	    textView.setText(o.getNumber() );
+	    //textView = viewHolder.getNumView();
+	    //textView.setText(o.getNumber() );
 
 	    textView = viewHolder.getAmountView();
 	    textView.setText(o.getAmount() );
@@ -103,5 +139,10 @@ class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return orderList.size();
+    }
+
+
+    public long getAmount(){
+        return totalAmount;
     }
 }

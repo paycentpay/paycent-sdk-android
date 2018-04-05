@@ -8,4 +8,7 @@
   <color name="secondaryDarkColor">#5a9216</color>
   <color name="primaryTextColor">#ffffff</color>
   <color name="secondaryTextColor">#000000</color>
+
+  <color name="holo_red_dark">#ffcc0000</color>
+
 </resources>

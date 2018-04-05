@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="app_name">演示程序</string>
+	<string name="app_name">Paycent演示</string>
 
 	<string name="title_fragment_old">Simple v4 fragment</string>
 
@@ -16,5 +17,17 @@
 
 	<string name="order_result_success">支付成功！</string>
 	<string name="order_result_failure">支付失败！</string>
+
+    <string name="country_prompt">选择国家</string>
+	<string-array name="country_arrays">
+		<item name="ID">Indonesia</item>
+		<item name="MM">Myanmar</item>
+		<item name="TH">Thailand</item>
+		<item name="My">Malaysia</item>
+		<item name="VN">Vietnam</item>
+		<item name="PH">Philippines</item>
+		<item name="SG">Singapore</item>
+		<item name="IN">India</item>
+	</string-array>
 
 </resources>

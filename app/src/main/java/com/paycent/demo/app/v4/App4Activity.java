@@ -1,23 +1,23 @@
 package com.paycent.demo.app.v4;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
+import android.widget.Toast;
 
-import com.paycent.demo.app.R;
-import com.paycent.demo.app.model.Configuration;
-import com.paycent.demo.app.model.OrderFactory;
-import com.paycent.demo.app.ui.SimpleV4Fragment;
 import com.paycent.android.sdk.SdkPayRequest;
 import com.paycent.android.sdk.SdkPayResult;
 import com.paycent.android.sdk.SdkPayTask;
 import com.paycent.android.sdk.SdkPayTaskFactory;
+import com.paycent.demo.app.R;
+import com.paycent.demo.app.model.OrderFactory;
+import com.paycent.demo.app.ui.SimpleV4Fragment;
 
-public class App4Activity extends Activity {
+public class App4Activity extends FragmentActivity {
 
 	protected Fragment createInitFragment() {
 
@@ -36,20 +36,18 @@ public class App4Activity extends Activity {
 
 	OrderFactory orderFactory;
 
-	Configuration configuration;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
 		orderFactory = new OrderFactory();
 
-		configuration = new Configuration(this);
 
 		super.onCreate(savedInstanceState);
 
 		setContentView(getLayoutResId());
 
-		FragmentManager fm = getFragmentManager();
+		FragmentManager fm = getSupportFragmentManager();
 		Fragment fragment = fm.findFragmentById(getFragmentResId());
 
 		if (fragment == null) {
@@ -65,24 +63,28 @@ public class App4Activity extends Activity {
 
 		public void handleMessage(Message msg) {
 
-			SdkPayResult result = (SdkPayResult) msg.obj;
+		SdkPayResult result = (SdkPayResult) msg.obj;
 
+		Log.d(TAG, result.toString() );
+		if( !result.getStatus() .equals("102")) {
 			Log.d(TAG, result.toString() );
+		}else{
+			Log.i(TAG, "TODO: Got to query...");
+			Toast.makeText(App4Activity.this, "Order was created but not completed", Toast.LENGTH_LONG).show();
+		}
+
 		}
 	};
 
-	public void pay() {
+	public void pay(String countryCode, String amount) {
 
-
-		final SdkPayRequest req = configuration.createSdkRequest();
-
+		final SdkPayRequest req = orderFactory.createSdkRequest();
+		req.setCountry(countryCode);
 		req.setOrderNo(String.valueOf(System.currentTimeMillis()));
-		req.setAmount("5000");
-		req.setCurrency("840");
-		req.setProductName("SDK Game Card");
-		req.setMp("");
-		req.setOrderPeriod("30");
-		req.setPayerLoginName("");
+		req.setProductName("SDK Game credits");
+		req.setAmount(amount);
+		req.setFrpCodes(orderFactory.getChannelCodes(countryCode));
+		Log.i(TAG, req.getFrpCodes().toString() );
 
 		SdkPayTask sdkTask = SdkPayTaskFactory.getInstance(this);
 
