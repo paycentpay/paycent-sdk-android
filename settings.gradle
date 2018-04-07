@@ -1,1 +1,1 @@
-include ':app', ':paysdklib-release'
+include ':demoapp', ':paysdklib-release'
