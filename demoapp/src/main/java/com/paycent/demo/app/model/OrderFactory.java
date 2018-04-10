@@ -148,7 +148,6 @@ public class OrderFactory {
 
 	private static Map<String, String> mmMaps = new HashMap<>();
 	static {
-		mmMaps.put("MM-IB-SIM", "SIM");
 		mmMaps.put("MM-IB-CB", "CB");
 
 		mmMaps.put("MM-DCB-OOREDOO", "OOREDOO");
@@ -157,7 +156,7 @@ public class OrderFactory {
 		mmMaps.put("MM-VR-REDDOT", "REDDOT");
 
 		mmMaps.put("MM-VR-MYPIN", "MYPIN");
-		mmMaps.put("MM-VR-MYPINDET", "MYPINDET");
+		mmMaps.put("MM-VR-MYPINDET", "MYPIN");
 		mmMaps.put("MM-VR-MEC", "MEC");
 
 		mmMaps.put("MM-EW-OKDOLLAR", "OKDOLLAR");
