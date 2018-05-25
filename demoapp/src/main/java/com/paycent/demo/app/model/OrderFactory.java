@@ -1,16 +1,11 @@
 package com.paycent.demo.app.model;
 
-import android.content.Context;
 import android.util.SparseArray;
 
-import com.google.gson.annotations.SerializedName;
 import com.paycent.android.sdk.SdkPayRequest;
-import com.paycent.demo.app.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -20,10 +15,10 @@ public class OrderFactory {
 
 	public SdkPayRequest createSdkRequest(){
 		SdkPayRequest req = new SdkPayRequest();
-		req.setMerchantNo("888xxxxxxxxxx");	//merchant no
-		req.setMerchantKey("merchantkey"); //merchant key
+		req.setMerchantNo("888xxxxxxxxxx");	//merchant no, please replace
+		req.setMerchantKey("merchantkey"); //merchant key, please replace
 		req.setPayServerUrl("https://gateway-sandbox.bellotec.com/"); //this should be replaced with prod
-		req.setNotifyUrl("https://merchanthost/notify_url"); //this should be replaced with merchant server
+		req.setNotifyUrl("https://merchanthost/notify_url"); //this should be replaced with your merchant server to receive notification
 
 
 		return  req;
@@ -214,10 +209,16 @@ public class OrderFactory {
 	}
 
 	public String[] getChannelCodes(String countryCode){
-
+		//Option1: you can input multiple channels code instead of using dynamic channels
+		/*
 		Object[] ks = channelMaps.get(countryCode).keySet().toArray();
+		return Arrays.copyOf(ks, ks.length, String[].class);
+		*/
 
-		return  Arrays.copyOf(ks, ks.length, String[].class );
+
+		//Option2 : you can input empty, it will retrieve channels from server dynamically
+		return null;
+
 	}
 
 
