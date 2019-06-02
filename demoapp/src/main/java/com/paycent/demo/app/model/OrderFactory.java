@@ -147,8 +147,11 @@ public class OrderFactory {
 
 		mmMaps.put("MM-DCB-OOREDOO", "OOREDOO");
 		mmMaps.put("MM-DCB-TELENOR", "TELENOR");
+		mmMaps.put("MM-DCB-TELENOR2", "TELENOR");
+		mmMaps.put("MM-DCB-MYTEL", "MYTEL");
 
 		mmMaps.put("MM-VR-REDDOT", "REDDOT");
+		mmMaps.put("MM-VR-EASYPOINTS", "EASYPOINTS");
 
 		mmMaps.put("MM-VR-MYPIN", "MYPIN");
 		mmMaps.put("MM-VR-MYPINDET", "MYPIN");
